@@ -7,7 +7,7 @@ const deleteSelectedSkill = (name) =>{
 const renderSelectedSkills = () => {
     $('#selectedSkills').empty();
     $.map(selectedSkills,(selectedSkill, index)=>{
-        $(`<li><button data-id=${index}>${selectedSkill} &#10060;</button></li>`)
+        $(`<li><button>${selectedSkill} &#10060;</button></li>`)
             .click(()=>{deleteSelectedSkill(selectedSkill)})
             .appendTo($('#selectedSkills'));
     })
