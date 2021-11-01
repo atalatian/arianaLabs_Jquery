@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptLibraryMappings">
+    <file url="PROJECT" libraries="{1f8a1610cd57c397704c55f80147b0e1, immutable, jquery}" />
+  </component>
+</project>
