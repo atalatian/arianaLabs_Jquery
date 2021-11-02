@@ -5,42 +5,57 @@
     <title>Title</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" defer>
     </script>
+    <script src="https://code.highcharts.com/highcharts.js" defer></script>
+    <script src="https://code.highcharts.com/modules/exporting.js" defer></script>
+    <script src="https://code.highcharts.com/modules/export-data.js" defer></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js" defer></script>
+    <script type="text/javascript" src="../js/globals/selectedSkills.js" defer></script>
+    <script type="text/javascript" src="../js/globals/skills.js" defer></script>
     <script type="text/javascript" src="../js/localStorage/localStorage.js" defer></script>
     <script type="text/javascript" src="../js/services/removeDuplicate.js" defer></script>
-    <script type="text/javascript" src="../js/globals/selectedSkills.js" defer></script>
+    <script type="text/javascript" src="../js/chart.js" defer></script>
     <script type="text/javascript" src="../js/index.js" defer></script>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/chart.css">
 </head>
 <body>
     <div>
-        <ul>
+        <ul style="border: 1px solid; display: inline-block; margin: 0.5rem">
             <li>
-                <label for="firstName">First Name</label>
+                <label for="firstName">First Name:</label><br>
                 <input id="firstName" name="firstName" type="text">
             </li>
             <li>
-                <label for="lastName">Last Name</label>
+                <label for="lastName">Last Name:</label><br>
                 <input id="lastName" name="lastName" type="text">
             </li>
             <li>
-                <label for="age">Age</label>
+                <label for="age">Age:</label><br>
                 <input id="age" name="age" type="number">
             </li>
             <li>
-                <label for="skills">Select Skills</label>
-                <select name="skills" id="skills" onchange="skillChange();">
-                    <option value="html">HTML</option>
-                    <option value="css">CSS</option>
-                    <option value="javascript">Javascript</option>
-                </select>
-                <div>
-                    <ul id="selectedSkills"></ul>
+                <div style="display: inline-block; border: 1px solid" id="selectSection">
+                    <select style="margin: 0.5rem;" name="skills" id="skillsSelect" onchange="skillChange();">
+                        <option value="">Select Skills</option>
+                        <option value="html">HTML</option>
+                        <option value="css">CSS</option>
+                        <option value="javascript">Javascript</option>
+                    </select>
+                    <div>
+                        <div id="selectedSkills"></div>
+                    </div>
                 </div>
             </li>
-            <li>
-                <input onclick="onSave()" value="Save" type="submit">
+            <li id="error" style="color: revert">
+            </li>
+            <li id="submit">
             </li>
         </ul>
     </div>
-
+    <div id="users">
+    </div>
+    <figure class="highcharts-figure">
+        <div id="container"></div>
+    </figure>
 </body>
 </html>
