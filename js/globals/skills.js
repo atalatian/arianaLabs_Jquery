@@ -1,1 +1,0 @@
-const skills = ['html', 'css', 'javascript']

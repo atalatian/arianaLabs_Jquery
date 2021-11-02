@@ -66,7 +66,7 @@ const filterBySkill = () => {
     const users = localStorage.getItem('users');
     if(users){
         let newUsers = JSON.parse(users);
-        return skills.map((skill) => {
+        return unSelectedSkills.map((skill) => {
             const count = newUsers.filter((value) => {
                 return value.skills.includes(skill);
             }).length;

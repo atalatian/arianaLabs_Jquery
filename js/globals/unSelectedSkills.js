@@ -1,0 +1,1 @@
+const unSelectedSkills = ['html', 'css', 'javascript']

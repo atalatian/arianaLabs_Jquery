@@ -2,9 +2,11 @@ const renderSelectAndOptions = () => {
     const select = $('<select style="margin: 0.5rem;" name="skills" id="skillsSelect"></select>')
         .change(()=>skillChange());
     select.append('<option value="">Select Skills</option>')
-    skills.map((skill)=>{
+    unSelectedSkills.map((skill)=>{
         select.append($(`<option value=${skill}>${skill}</option>`))
     })
+    const skills = $('<div id="selectedSkills"></div>')
+    $('#selectSection').empty().append(select).append(skills);
 }
 
 const handleDeleteClick = (userId)=>{
@@ -153,7 +155,12 @@ const skillChange = () =>  {
     skillsInput.val('')
 }
 
+const removeLoading = () => {
+    $('#loading').detach()
+}
 
+renderSelectAndOptions();
 renderSubmit();
 renderUsers()
 renderChart();
+removeLoading();

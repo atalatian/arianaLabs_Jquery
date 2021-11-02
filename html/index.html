@@ -10,7 +10,7 @@
     <script src="https://code.highcharts.com/modules/export-data.js" defer></script>
     <script src="https://code.highcharts.com/modules/accessibility.js" defer></script>
     <script type="text/javascript" src="../js/globals/selectedSkills.js" defer></script>
-    <script type="text/javascript" src="../js/globals/skills.js" defer></script>
+    <script type="text/javascript" src="../js/globals/unSelectedSkills.js" defer></script>
     <script type="text/javascript" src="../js/localStorage/localStorage.js" defer></script>
     <script type="text/javascript" src="../js/services/removeDuplicate.js" defer></script>
     <script type="text/javascript" src="../js/chart.js" defer></script>
@@ -19,6 +19,9 @@
     <link rel="stylesheet" href="../css/chart.css">
 </head>
 <body>
+    <div id="loading" class="loading">
+        <h1>Loading...</h1>
+    </div>
     <div>
         <ul style="border: 1px solid; display: inline-block; margin: 0.5rem">
             <li>
@@ -35,15 +38,6 @@
             </li>
             <li>
                 <div style="display: inline-block; border: 1px solid" id="selectSection">
-                    <select style="margin: 0.5rem;" name="skills" id="skillsSelect" onchange="skillChange();">
-                        <option value="">Select Skills</option>
-                        <option value="html">HTML</option>
-                        <option value="css">CSS</option>
-                        <option value="javascript">Javascript</option>
-                    </select>
-                    <div>
-                        <div id="selectedSkills"></div>
-                    </div>
                 </div>
             </li>
             <li id="error" style="color: revert">
