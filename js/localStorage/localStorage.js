@@ -1,6 +1,6 @@
 const getUsers = () => {
     let users = localStorage.getItem('users');
-    if(users.length){
+    if(JSON.parse(users).length){
         return JSON.parse(users);
     }
     return [];
@@ -8,7 +8,7 @@ const getUsers = () => {
 
 const getUser = (id) => {
     const users = localStorage.getItem('users');
-    if(users.length){
+    if(JSON.parse(users).length){
         const newUsers = JSON.parse(users);
         const user = newUsers.filter((value)=>{
             return value.id == id;
@@ -22,7 +22,7 @@ const getUser = (id) => {
 
 const createUser = (user) => {
     const users = localStorage.getItem('users');
-    if(users.length){
+    if(JSON.parse(users).length){
         let newUsers = JSON.parse(users);
         const lastId = newUsers[newUsers.length-1].id;
         newUsers.push({...user, id: lastId + 1});
@@ -37,7 +37,7 @@ const createUser = (user) => {
 
 const editUser = (id, user) => {
     const users = localStorage.getItem('users');
-    if(users.length){
+    if(JSON.parse(users).length){
         let newUsers = JSON.parse(users)
         newUsers = newUsers.map((userI)=>{
             if(userI.id == id){
@@ -51,7 +51,7 @@ const editUser = (id, user) => {
 
 const removeUser = (id) => {
     const users = localStorage.getItem('users');
-    if(users.length){
+    if(JSON.parse(users).length){
         let newUsers = JSON.parse(users)
         newUsers = newUsers.filter((value)=>{
             return value.id !== id;
@@ -64,7 +64,7 @@ const removeUser = (id) => {
 
 const filterBySkill = () => {
     const users = localStorage.getItem('users');
-    if(users.length){
+    if(JSON.parse(users).length){
         let newUsers = JSON.parse(users);
         return unSelectedSkills.map((skill) => {
             const count = newUsers.filter((value) => {
@@ -82,7 +82,7 @@ const destroy = () => {
 
 const everyThingIsOkay = () =>{
     let users = localStorage.getItem('users');
-    if(users){
+    if(JSON.parse(users).length){
         JSON.parse(users).map((user)=>{
             const obj = {
                 'firstName': user.firstName,
