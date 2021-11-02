@@ -1,6 +1,6 @@
 const getUsers = () => {
     let users = localStorage.getItem('users');
-    if(users){
+    if(users.length){
         return JSON.parse(users);
     }
     return [];
@@ -8,7 +8,7 @@ const getUsers = () => {
 
 const getUser = (id) => {
     const users = localStorage.getItem('users');
-    if(users){
+    if(users.length){
         const newUsers = JSON.parse(users);
         const user = newUsers.filter((value)=>{
             return value.id == id;
@@ -22,7 +22,7 @@ const getUser = (id) => {
 
 const createUser = (user) => {
     const users = localStorage.getItem('users');
-    if(users){
+    if(users.length){
         let newUsers = JSON.parse(users);
         const lastId = newUsers[newUsers.length-1].id;
         newUsers.push({...user, id: lastId + 1});
@@ -37,7 +37,7 @@ const createUser = (user) => {
 
 const editUser = (id, user) => {
     const users = localStorage.getItem('users');
-    if(users){
+    if(users.length){
         let newUsers = JSON.parse(users)
         newUsers = newUsers.map((userI)=>{
             if(userI.id == id){
@@ -51,7 +51,7 @@ const editUser = (id, user) => {
 
 const removeUser = (id) => {
     const users = localStorage.getItem('users');
-    if(users){
+    if(users.length){
         let newUsers = JSON.parse(users)
         newUsers = newUsers.filter((value)=>{
             return value.id !== id;
@@ -64,7 +64,7 @@ const removeUser = (id) => {
 
 const filterBySkill = () => {
     const users = localStorage.getItem('users');
-    if(users){
+    if(users.length){
         let newUsers = JSON.parse(users);
         return unSelectedSkills.map((skill) => {
             const count = newUsers.filter((value) => {
@@ -77,4 +77,29 @@ const filterBySkill = () => {
 
 const destroy = () => {
     localStorage.removeItem('users');
+}
+
+
+const everyThingIsOkay = () =>{
+    let users = localStorage.getItem('users');
+    if(users){
+        JSON.parse(users).map((user)=>{
+            const obj = {
+                'firstName': user.firstName,
+                'lastName': user.lastName,
+                'age': user.age,
+                'skills': user.skills,
+            }
+
+            if (!obj.firstName) {
+                destroy();
+            }else if(!obj.lastName){
+                destroy();
+            }else if(!obj.age){
+                destroy();
+            }else if(!obj.skills){
+                destroy();
+            }
+        })
+    }
 }

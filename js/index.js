@@ -53,49 +53,55 @@ const editClick = (userId) => {
 
 const handleEditClick = (event ,userId) => {
     const user = getUser(userId);
-    $('.user').each(function () {
-        $(this).css('border', '1px solid black')
-    })
-    $(event.target.parentElement.parentElement).css('border', '1px solid orange')
-    $('#firstName').val(user.firstName);
-    $('#lastName').val(user.lastName);
-    $('#age').val(user.age);
-    selectedSkills = user.skills;
-    renderSelectedSkills();
-    $('#submit').empty().append($(`<input value="Finish" type="submit">`).click(()=> editClick(userId)));
+    if (user) {
+        $('.user').each(function () {
+            $(this).css('border', '1px solid black')
+        })
+        $(event.target.parentElement.parentElement).css('border', '1px solid orange')
+        $('#firstName').val(user.firstName);
+        $('#lastName').val(user.lastName);
+        $('#age').val(user.age);
+        selectedSkills = user.skills;
+        renderSelectedSkills();
+        $('#submit').empty()
+        .append($(`<input value="Finish" type="submit">`).click(()=> editClick(userId)));
+    }
+
 }
 
 const renderUsers = () => {
     const users = getUsers();
-    let usersSection = $('#users');
-    usersSection.empty();
-    $.map(users, (user)=>{
-        const div = $('<div class="user" ' +
-            'style="border: 1px solid; display: inline-block; margin: 0.5rem"></div>');
-        const ul = $('<ul></ul>').addClass('ul');
-        div.append(ul);
-        const firstName = $(`<li>First Name: ${user.firstName}</li>`).addClass('li');
-        ul.append(firstName)
-        const lastName = $(`<li>Last Name: ${user.lastName}</li>`).addClass('li');
-        ul.append(lastName)
-        const age = $(`<li>Age: ${user.age}</li>`).addClass('li');
-        ul.append(age)
-        const skills = $(`<li><div style="display: inline-block; border: 1px solid; padding: 0.5rem" 
-                              id="skills">Skills: 
-            ${user.skills.map((skill)=>{
-            return(
-                `<button style="margin: 0.5rem">${skill}</button>`
-            );
-        })}</div></li>`).addClass('li');
-        ul.append(skills)
-        const buttonWrap = $(`<div style="margin: 0.5rem"></div>`)
-        const edit = $(`<button style="margin: 0.5rem">Edit</button>`).click((e)=>handleEditClick(e, user.id));
-        const del = $(`<button style="margin: 0.5rem">Delete</button>`).click(()=>handleDeleteClick(user.id));
-        buttonWrap.append(edit);
-        buttonWrap.append(del)
-        div.append(buttonWrap);
-        usersSection.append(div)
-    })
+    if (users) {
+        let usersSection = $('#users');
+        usersSection.empty();
+        $.map(users, (user)=>{
+            const div = $('<div class="user" ' +
+                'style="border: 1px solid; display: inline-block; margin: 0.5rem"></div>');
+            const ul = $('<ul></ul>').addClass('ul');
+            div.append(ul);
+            const firstName = $(`<li>First Name: ${user.firstName}</li>`).addClass('li');
+            ul.append(firstName)
+            const lastName = $(`<li>Last Name: ${user.lastName}</li>`).addClass('li');
+            ul.append(lastName)
+            const age = $(`<li>Age: ${user.age}</li>`).addClass('li');
+            ul.append(age)
+            const skills = $(`<li><div style="display: inline-block; border: 1px solid; padding: 0.5rem" 
+                                  id="skills">Skills: 
+                ${user.skills.map((skill)=>{
+                return(
+                    `<button style="margin: 0.5rem">${skill}</button>`
+                );
+            })}</div></li>`).addClass('li');
+            ul.append(skills)
+            const buttonWrap = $(`<div style="margin: 0.5rem"></div>`)
+            const edit = $(`<button style="margin: 0.5rem">Edit</button>`).click((e)=>handleEditClick(e, user.id));
+            const del = $(`<button style="margin: 0.5rem">Delete</button>`).click(()=>handleDeleteClick(user.id));
+            buttonWrap.append(edit);
+            buttonWrap.append(del)
+            div.append(buttonWrap);
+            usersSection.append(div)
+        })   
+    }
 }
 
 
@@ -155,12 +161,8 @@ const skillChange = () =>  {
     skillsInput.val('')
 }
 
-const removeLoading = () => {
-    $('#loading').detach()
-}
-
+everyThingIsOkay();
 renderSelectAndOptions();
 renderSubmit();
 renderUsers()
 renderChart();
-removeLoading();
